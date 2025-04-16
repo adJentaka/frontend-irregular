@@ -1,118 +1,122 @@
 /* Navbar Container */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background-color: rgba(255, 255, 255, 0.849);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    border-radius: 40px;
-    /* flex-wrap: wrap; */
-    position: relative;
+  padding: 15px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-.navbar-logo img {
-    width: 30px;
-    margin-left: 20px;
+.nav-container {
+  display: flex;
+  align-items: center;
+  padding: 10px 25px;
+  box-shadow: 2px 2px;
+  border: 1px solid gray;
+  justify-content: space-between;
 }
 
-.navbar-menu {
-    display: flex;
-    list-style: none;
-    gap: 40px;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-web {
+  width: 2rem;
+}
+
+.nav-wrap {
+  gap: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 20px;
 }
 
 .navbar-item {
-    font-size: 16px;
-    font-weight: bold;
+  list-style: none;
 }
 
 .navbar-link {
-    text-decoration: none;
-    color: black;
-    transition: 0.3s ease-in-out;
-}
-
-.navbar-link:hover {
-    text-decoration: underline;
-}
-
-/* Search Icon */
-.navbar-search img {
-    width: 30px;
-    height: 30px;
-}
-
-/* Hamburger Icon (hidden by default) */
-.navbar-toggle {
-    display: none;
-    font-size: 24px;
-    cursor: pointer;
-    margin-right: 20px;
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
 }
 
 .hamburger-menu {
-    display: none;
-}
-
-@media screen and (max-width: 768px) {
-    .navbar {
-        /* flex-direction: column; */
-        align-items: center;
-        padding: 15px 20px;
-    }
-
-    .hamburger-menu {
-        display: flex;
-    }
-
-    .navbar-menu {
-        /* flex-direction: column; */
-        gap: 20px;
-        position: static;
-        transform: none;
-        width: 100%;
-        margin-top: 20px;
-        display: none; 
-    }
-
-    .navbar-menu.active {
-        display: flex;
-    }
-
-    .navbar-toggle {
-        display: block;
-        align-self: flex-end;
-    }
-
-    .navbar-search {
-        align-self: flex-end;
-        margin-top: 10px;
-    }
+  display: none;
 }
 
 .navbar-search {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  border-radius: 20px;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  border: 1px solid gray;
 }
 
 .search-input {
-    padding: 8px 12px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-    outline: none;
-    font-size: 14px;
+  border: none;
+  outline: none;
 }
 
-.search-icon {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
+@media screen and (max-width: 768px) {
+  .nav-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 25px;
+    box-shadow: 2px 2px;
+    border: 1px solid gray;
+    justify-content: space-between;
+  }
+
+  .nav-wrap {
+    gap: 30px;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .hamburger-menu {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .navbar-search {
+    max-width: 70%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    border: 1px solid gray;
+  }
+  .search-input {
+    display: flex;
+    max-width: 200px;
+  }
+
+  .search-ico {
+    display: flex;
+  }
+
+  .navbar-menu.active {
+    display: flex;
+  }
+
+  .navbar-toggle {
+    display: block;
+    align-self: flex-end;
+  }
+
+  .navbar-search {
+    align-self: flex-end;
+  }
 }

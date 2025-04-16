@@ -1,6 +1,10 @@
+import { Sidebar } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../lib/axios";
 import "./AdminProducts.css";
+import DashboardSidebar from "./DashboardSidebar";
+import TopAdmin from "./TopAdmin";
 
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
@@ -12,6 +16,7 @@ const AdminProducts = () => {
     description: "",
     thumbnail: null,
   });
+  const [isOpen, setIsOpen] = useState(false);
 
   const fetchProducts = async () => {
     const res = await axiosInstance.get("/api/products");
@@ -66,125 +71,144 @@ const AdminProducts = () => {
     });
   };
 
+  const handleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/admin/login");
+  };
+
   return (
-    <div className="admin-container">
-      <h2>Manajemen Produk</h2>
+    <>
+      <TopAdmin title="Admin Products" onClick={handleMenu} />
+      <DashboardSidebar
+        onLogout={logout}
+        isOpen={isOpen}
+        onClick={handleMenu}
+      />
+      <div className="admin-container">
+        <h2>Manajemen Produk</h2>
 
-      <button
-        onClick={() => setEditingProduct(false)}
-        className="btn create-btn"
-      >
-        + Tambah Produk
-      </button>
+        <button
+          onClick={() => setEditingProduct(false)}
+          className="btn create-btn"
+        >
+          + Tambah Produk
+        </button>
 
-      <table className="product-table">
-        <thead>
-          <tr>
-            <th>Thumbnail</th>
-            <th>Nama</th>
-            <th>Harga</th>
-            <th>Deskripsi</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((p) => (
-            <tr key={p._id}>
-              <td>
-                <img src={p.thumbnail} alt={p.name} width="60" />
-              </td>
-              <td>{p.name}</td>
-              <td>{p.price}</td>
-              <td>{p.description}</td>
-              <td>
-                <button
-                  onClick={() => openEditModal(p)}
-                  className="btn edit-btn"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => setDeletingProduct(p)}
-                  className="btn delete-btn"
-                >
+        <table className="product-table">
+          <thead>
+            <tr>
+              <th>Thumbnail</th>
+              <th>Nama</th>
+              <th>Harga</th>
+              <th>Deskripsi</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((p) => (
+              <tr key={p._id}>
+                <td>
+                  <img src={p.thumbnail} alt={p.name} width="60" />
+                </td>
+                <td>{p.name}</td>
+                <td>{p.price}</td>
+                <td>{p.description}</td>
+                <td>
+                  <button
+                    onClick={() => openEditModal(p)}
+                    className="btn edit-btn"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => setDeletingProduct(p)}
+                    className="btn delete-btn"
+                  >
+                    Hapus
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {editingProduct !== null && (
+          <div className="modal">
+            <div className="modal-content">
+              <h3>{editingProduct._id ? "Edit Produk" : "Tambah Produk"}</h3>
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nama Produk"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                <input
+                  type="number"
+                  name="price"
+                  placeholder="Harga"
+                  value={formData.price}
+                  onChange={handleChange}
+                />
+                <textarea
+                  name="description"
+                  placeholder="Deskripsi"
+                  value={formData.description}
+                  onChange={handleChange}
+                />
+                <input
+                  type="file"
+                  name="thumbnail"
+                  onChange={handleChange}
+                  accept="image/*"
+                />
+                <div className="modal-actions">
+                  <button type="submit" className="btn save-btn">
+                    Simpan
+                  </button>
+                  <button
+                    type="button"
+                    className="btn cancel-btn"
+                    onClick={() => setEditingProduct(null)}
+                  >
+                    Batal
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {deletingProduct && (
+          <div className="modal">
+            <div className="modal-content">
+              <p>
+                Yakin ingin menghapus produk{" "}
+                <strong>{deletingProduct.name}</strong>?
+              </p>
+              <div className="modal-actions">
+                <button onClick={handleDelete} className="btn delete-btn">
                   Hapus
                 </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {editingProduct !== null && (
-        <div className="modal">
-          <div className="modal-content">
-            <h3>{editingProduct._id ? "Edit Produk" : "Tambah Produk"}</h3>
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Nama Produk"
-                value={formData.name}
-                onChange={handleChange}
-              />
-              <input
-                type="number"
-                name="price"
-                placeholder="Harga"
-                value={formData.price}
-                onChange={handleChange}
-              />
-              <textarea
-                name="description"
-                placeholder="Deskripsi"
-                value={formData.description}
-                onChange={handleChange}
-              />
-              <input
-                type="file"
-                name="thumbnail"
-                onChange={handleChange}
-                accept="image/*"
-              />
-              <div className="modal-actions">
-                <button type="submit" className="btn save-btn">
-                  Simpan
-                </button>
                 <button
-                  type="button"
+                  onClick={() => setDeletingProduct(null)}
                   className="btn cancel-btn"
-                  onClick={() => setEditingProduct(null)}
                 >
                   Batal
                 </button>
               </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {deletingProduct && (
-        <div className="modal">
-          <div className="modal-content">
-            <p>
-              Yakin ingin menghapus produk{" "}
-              <strong>{deletingProduct.name}</strong>?
-            </p>
-            <div className="modal-actions">
-              <button onClick={handleDelete} className="btn delete-btn">
-                Hapus
-              </button>
-              <button
-                onClick={() => setDeletingProduct(null)}
-                className="btn cancel-btn"
-              >
-                Batal
-              </button>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
 

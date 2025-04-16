@@ -4,6 +4,16 @@
   padding: 20px;
 }
 
+@media (max-width: 768px) {
+  .admin-container {
+    max-width: 400px;
+  }
+  .product-table {
+    max-width: 300px;
+    overflow-x: scroll;
+  }
+}
+
 .product-table {
   width: 100%;
   border-collapse: collapse;
@@ -38,11 +48,13 @@
 }
 
 .edit-btn {
+  width: 90%;
   background-color: #007bff;
   color: white;
 }
 
 .delete-btn {
+  width: 90%;
   background-color: #dc3545;
   color: white;
 }
@@ -67,6 +79,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.product-table tbody td {
+  max-width: 400px;
+  overflow-x: scroll;
 }
 
 .modal-content {

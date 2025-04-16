@@ -1,0 +1,9 @@
+.top-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 100vh;
+  padding: 25px 40px;
+  background-color: gray;
+  margin-bottom: 30px;
+}

@@ -90,29 +90,40 @@ const ProductDetail = () => {
   if (!product) return <p>Product not found.</p>;
 
   return (
-    <div className="product-card">
-      <img
-        src={product.thumbnail}
-        alt={product.name}
-        className="product-card-image"
-      />
-      <div className="product-card-body">
-        <h2 className="product-card-title">{product.name}</h2>
-        <p className="product-card-price">
-          Rp {product.price.toLocaleString()}
-        </p>
-        <p className="product-card-description">{product.description}</p>
-        <button className="checkout-button" onClick={() => setShowModal(true)}>
-          Checkout
-        </button>
-      </div>
+    <>
+      <div className="product-card">
+        <img
+          src={product.thumbnail}
+          alt={product.name}
+          className="product-card-image"
+        />
+        <div className="product-card-body">
+          <p className="product-card-price">
+            {Intl.NumberFormat("id-Id", {
+              style: "currency",
+              currency: "IDR",
+              maximumFractionDigits: 0,
+            }).format(product.price)}
+          </p>
+          <p className="product-card-title">{product.name}</p>
 
-      {showModal && (
-        <div className="modal-overlay">
+          <p className="product-card-description">
+            Deskripsi : {product.description}
+          </p>
+          <button
+            className="checkout-button"
+            onClick={() => setShowModal(true)}
+          >
+            Beli Sekarang
+          </button>
+        </div>
+      </div>
+      {showModal ? (
+        <>
           <div className="modal">
-            <h3>Checkout Form</h3>
             <form onSubmit={handleCheckout}>
-              <label>First Name:</label>
+              <h3>Checkout Form</h3>
+              <label>Masukkan Nama Mu:</label>
               <input
                 type="text"
                 value={firstName}
@@ -125,24 +136,24 @@ const ProductDetail = () => {
                 <button type="button" onClick={handleDecrement}>
                   -
                 </button>
-                <span>{quantity}</span>
+                <div className="qty">{quantity}</div>
                 <button type="button" onClick={handleIncrement}>
                   +
                 </button>
               </div>
 
-              <label>Amount:</label>
+              <label>Total Harga:</label>
               <p>Rp {(product.price * quantity).toLocaleString()}</p>
 
-              <button type="submit">Submit Checkout</button>
+              <button type="submit">Buat Pesanan</button>
               <button type="button" onClick={() => setShowModal(false)}>
                 Cancel
               </button>
             </form>
           </div>
-        </div>
-      )}
-    </div>
+        </>
+      ) : null}
+    </>
   );
 };
 

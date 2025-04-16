@@ -1,72 +1,72 @@
 .contact-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 50px;
-    color: #fff;
-    flex-wrap: wrap; /* penting untuk pecah layout di layar kecil */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  color: black;
+  flex-wrap: wrap; /* penting untuk pecah layout di layar kecil */
 }
 
 .contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  flex: 1;
 }
 
 .info-item {
-    display: flex;
-    align-items: center;
-    text-align: left;
-    gap: 15px;
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    max-width: 500px;
-    font-size: 120%;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 15px;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 500px;
+  font-size: 120%;
 }
 
 .icon {
-    width: 40px;
-    height: auto;
+  width: 40px;
+  height: auto;
 }
 
 .contact-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
 .contact-image img {
-    width: 300px;
-    border-radius: 15px;
-    box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.1);
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.1);
 }
 
 /* ✅ Tambahan Media Query: Responsif di Mobile */
 @media (max-width: 768px) {
-    .contact-container {
-        flex-direction: column;
-        align-items: center;
-        padding: 30px 20px;
-        text-align: center;
-    }
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    text-align: center;
+  }
 
-    .contact-info {
-        align-items: center;
-        padding: 10px;
-    }
+  .contact-info {
+    align-items: center;
+    padding: 10px;
+  }
 
-    .info-item {
-        justify-content: center;
-        text-align: center;
-        font-size: 100%;
-    }
+  .info-item {
+    justify-content: center;
+    text-align: center;
+    font-size: 100%;
+  }
 
-    .contact-image img {
-        width: 90%;
-        max-width: 250px;
-    }
+  .contact-image img {
+    width: 90%;
+    max-width: 250px;
+  }
 }

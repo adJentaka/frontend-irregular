@@ -1,76 +1,92 @@
 .content {
-    margin: 0 auto;
-    padding: 0 20px;
-    max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 1200px;
+  min-height: 100vh;
 }
 
-.line1, .line2, .line3 {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center;
-    margin-bottom: 35px;
-    gap: 20px;
+.line {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.product1, .product2, .product3 {
-    background-color: rgb(255, 255, 255);
-    border-radius: 20px;
-    padding: 20px;
-    flex: 1 1 300px; 
-    max-width: 300px;
-    box-sizing: border-box;
+.product {
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  max-width: 300px;
+  box-sizing: border-box;
 }
 
-.product1 img, .product2 img, .product3 img {
-    background-color: rgb(208, 205, 205);
-    border-radius: 20px;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 9/10;
-    object-fit: cover;
-    margin-bottom: 15px;
+.product img {
+  background-color: rgb(208, 205, 205);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9/10;
+  object-fit: cover;
+  margin-bottom: 15px;
 }
 
-.text-product1, .text-product2, .text-product3 {
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: 15px;
+.text-product {
+  overflow-x: scroll;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 300px;
+  text-align: left;
+  font-size: 1rem;
 }
 
-.text-product1 li, .text-product2 li, .text-product3 li {
-    font-size: 90%;
+.text-product li {
+  font-size: 90%;
 }
 
 .harga {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: rgb(255, 153, 0);
-    font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(255, 153, 0);
+  font-size: 1.5rem;
 }
 
-.harga img, .keranjang img {
-    width: 35px;
-    height: 35px;
+.harga img,
+.keranjang img {
+  width: 35px;
+  height: 35px;
 }
 
 .keranjang {
-    background-color: white;
+  background-color: white;
+}
+
+.loader {
+  animation: loader 3s linear infinite;
+}
+
+@keyframes loader {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 768px) {
-    .line1, .line2, .line3 {
-        flex-direction: column;
-        align-items: center;
-    }
+  .line {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .product1, .product2, .product3 {
-        width: 90%;
-        max-width: 100%;
-    }
-
-    .harga {
-        flex-direction: row;
-        justify-content: space-between;
-    }
+  .product {
+    max-width: 400px;
+  }
+  .text-product {
+    overflow-x: scroll;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 400px;
+    text-align: left;
+    font-size: 1rem;
+  }
+  .harga {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
+
