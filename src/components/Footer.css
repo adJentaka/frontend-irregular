@@ -1,0 +1,85 @@
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #fff;
+    padding: 20px 50px;
+    border-top: 2px solid #000;
+    margin-top: 40px;
+    font-family: Arial, sans-serif;
+}
+
+.footer .logofooter {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.footer .logofooter img {
+    width: 40px;
+}
+
+.footer .section {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    line-height: 1.8;
+    padding: 20px;
+    flex: 1 1 200px;
+}
+
+.footer h4 {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer p {
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+.footer .social-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 10px 0;
+}
+
+.footer .social-icons img {
+    width: 30px;
+}
+
+.footer .copyright {
+    font-size: 12px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* Responsif untuk mobile (max-width 768px) */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .footer .logofooter {
+        margin: 0 auto 20px auto;
+    }
+
+    .footer .section {
+        padding: 10px 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer .social-icons {
+        justify-content: center;
+    }
+
+    .footer .copyright {
+        margin-top: 15px;
+    }
+}

@@ -1,0 +1,118 @@
+/* Navbar Container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.849);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    border-radius: 40px;
+    /* flex-wrap: wrap; */
+    position: relative;
+}
+
+.navbar-logo img {
+    width: 30px;
+    margin-left: 20px;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar-item {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+.navbar-link:hover {
+    text-decoration: underline;
+}
+
+/* Search Icon */
+.navbar-search img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Hamburger Icon (hidden by default) */
+.navbar-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.hamburger-menu {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        /* flex-direction: column; */
+        align-items: center;
+        padding: 15px 20px;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .navbar-menu {
+        /* flex-direction: column; */
+        gap: 20px;
+        position: static;
+        transform: none;
+        width: 100%;
+        margin-top: 20px;
+        display: none; 
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-toggle {
+        display: block;
+        align-self: flex-end;
+    }
+
+    .navbar-search {
+        align-self: flex-end;
+        margin-top: 10px;
+    }
+}
+
+.navbar-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
