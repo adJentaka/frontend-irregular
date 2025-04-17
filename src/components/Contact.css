@@ -4,7 +4,7 @@
   align-items: center;
   padding: 50px;
   color: black;
-  flex-wrap: wrap; /* penting untuk pecah layout di layar kecil */
+  flex-wrap: wrap; 
 }
 
 .contact-info {

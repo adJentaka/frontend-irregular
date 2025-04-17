@@ -56,7 +56,7 @@
     width: 100%;
 }
 
-/* Responsif untuk mobile (max-width 768px) */
+
 @media (max-width: 768px) {
     .footer {
         flex-direction: column;
