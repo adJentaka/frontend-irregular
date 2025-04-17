@@ -89,8 +89,8 @@
 .modal-content {
   background: white;
   padding: 20px;
-  width: 90%;
-  max-width: 500px;
+  width: 100%;
+  max-width: fit-content;
   border-radius: 8px;
 }
 
