@@ -17,6 +17,7 @@ const AdminProducts = () => {
     thumbnail: null,
   });
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchProducts = async () => {
     const res = await axiosInstance.get("/api/products");
@@ -37,22 +38,31 @@ const AdminProducts = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Mulai loading
+
     const data = new FormData();
     data.append("name", formData.name);
     data.append("price", formData.price);
     data.append("description", formData.description);
     if (formData.thumbnail) data.append("thumbnail", formData.thumbnail);
 
-    if (editingProduct) {
-      await axiosInstance.patch(`/api/products/${editingProduct?._id}`, data);
-      setEditingProduct(null);
-    }
-    if (editingProduct === false) {
-      await axiosInstance.post("/api/products", data);
-    }
+    try {
+      if (editingProduct === false) {
+        await axiosInstance.post("/api/products", data);
+      }
 
-    setFormData({ name: "", price: "", description: "", thumbnail: null });
-    fetchProducts();
+      if (editingProduct) {
+        await axiosInstance.patch(`/api/products/${editingProduct?._id}`, data);
+        setEditingProduct(null);
+      }
+
+      setFormData({ name: "", price: "", description: "", thumbnail: null });
+      fetchProducts();
+    } catch (error) {
+      console.error("Submit error:", error);
+    } finally {
+      setIsLoading(false); // Selesai loading
+    }
   };
 
   const handleDelete = async () => {
@@ -94,7 +104,16 @@ const AdminProducts = () => {
         <h2>Manajemen Produk</h2>
 
         <button
-          onClick={() => setEditingProduct(false)}
+          onClick={() => {
+            setEditingProduct(false);
+
+            setFormData({
+              name: "",
+              price: "",
+              description: "",
+              thumbnail: null,
+            });
+          }}
           className="btn create-btn"
         >
           + Tambah Produk
@@ -170,8 +189,12 @@ const AdminProducts = () => {
                   accept="image/*"
                 />
                 <div className="modal-actions">
-                  <button type="submit" className="btn save-btn">
-                    Simpan
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="btn save-btn"
+                  >
+                    {isLoading ? "Loading" : "Submit"}
                   </button>
                   <button
                     type="button"

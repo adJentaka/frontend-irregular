@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardSidebar from "./DashboardSidebar";
+import ProductStats from "./ProductSummary";
 import TopAdmin from "./TopAdmin";
 
 const AdminDashboard = () => {
@@ -24,6 +25,9 @@ const AdminDashboard = () => {
         isOpen={isOpen}
         onClick={handleMenu}
       />
+      <div>
+        <ProductStats />
+      </div>
     </div>
   );
 };
